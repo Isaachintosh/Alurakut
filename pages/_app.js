@@ -15,10 +15,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: sans-serif;
   }
 
-  #_next {
+  #__next {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 `
 

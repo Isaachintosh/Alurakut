@@ -1,6 +1,7 @@
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
-import { AlurakutMenu } from '../src/lib/AlurakutCommons'
+import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
+import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
 function ProfileSidebar(properties) {
   return (
@@ -12,30 +13,61 @@ function ProfileSidebar(properties) {
 
 export default function Home() {
   const randomUser = `isaachintosh`;
+  const faviPersons = [
+    'juunegreiros',
+    'omariosouto',
+    'peas',
+    'rafaballerini',
+    'marcobrunodev',
+    'felipefialho'
+  ]
   return (
     <>
-    <AlurakutMenu />
-    <MainGrid>
-      <div className="profileArea" style={{ gridArea: 'profileArea' }}>
-        <ProfileSidebar githubUser={randomUser}/>
-      </div>
-      <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
-        <Box>
-          Bem Vindo
-        </Box>
-        <Box>
-          Postagens
-        </Box>
-      </div>
-      <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
-        <Box>
-          Pessoas da comunidade
-        </Box>
-        <Box>
-          Comunidades
-        </Box>
-      </div>
-    </MainGrid>
+      <AlurakutMenu /> {/** alterar cor para dark theme */}
+      <MainGrid>
+        <div className="profileArea" style={{ gridArea: 'profileArea' }}>
+          <ProfileSidebar githubUser={randomUser}/>
+          <Box>
+            <AlurakutProfileSidebarMenuDefault></AlurakutProfileSidebarMenuDefault>
+
+          </Box>
+        </div>
+        <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
+          <Box>
+            <h1 className="title">
+              Bem vindo
+            </h1>
+            <OrkutNostalgicIconSet>
+            </OrkutNostalgicIconSet>
+          </Box>
+          <Box>
+            Postagens
+          </Box>
+        </div>
+        <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
+          <ProfileRelationsBoxWrapper>
+            <h2 className="smallTitle"> {/** alterar cor para dark theme */}
+              Pessoas da Comunidade ({faviPersons.length})
+            </h2>
+            <ul>
+              {faviPersons.map((itemAtual) => {
+                return (
+                  <li>
+                    <a href={`/users/${itemAtual}`} key={itemAtual}>
+                      <img src={`https://github.com/${itemAtual}.png`} />
+                      <span>{itemAtual}</span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+
+          </ProfileRelationsBoxWrapper>
+          <Box>
+            Comunidades
+          </Box>
+        </div>
+      </MainGrid>
     </>
   )
 }

@@ -54,9 +54,9 @@ export function AlurakutMenu({ githubUser }) {
 }
 AlurakutMenu.Wrapper = styled.header`
   width: 100%;
-  background-color: #308BC5;
+  background-color: #505052;
   .alurakutMenuProfileSidebar {
-    background: white;
+    background: rgba(72,72,72, 0.85);
     position: fixed;
     z-index: 100;
     padding: 46px;
@@ -80,7 +80,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
     .boxLink {
       font-size: 18px;
-      color: #2E7BB4;
+      color: #c5c5cc;
       -webkit-text-decoration: none;
       text-decoration: none;
       font-weight: 800;
@@ -93,7 +93,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
   }
   .container {
-    background-color: #308BC5;
+    background-color: #505052;
     padding: 7px 16px;
     max-width: 1110px;
     margin: auto;
@@ -126,7 +126,7 @@ AlurakutMenu.Wrapper = styled.header`
         text-decoration: none;
         &:after {
           content: " ";
-          background-color: #5292C1;
+          background-color: #c2c2c0;
           display: block;
           position: absolute;
           width: 1px;
@@ -140,7 +140,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
     input {
       color: #ffffff;
-      background: #5579A1;
+      background: #606060;
       padding: 10px 42px;
       border: 0;
       background-image: url(${`${BASE_URL}/icons/search.svg`});
@@ -222,7 +222,7 @@ export function AlurakutProfileSidebarMenuDefault() {
 AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
   a {
     font-size: 12px;
-    color: #2E7BB4;
+    color: #c7c7cc;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -290,7 +290,7 @@ OrkutNostalgicIconSet.List = styled.ul`
   flex-wrap: wrap;
   li {
     font-size: 12px;
-    color: #5A5A5A;
+    color: #f2f2f7;
     display: grid;
     grid-template-areas:
       "title title"
@@ -320,18 +320,18 @@ OrkutNostalgicIconSet.List = styled.ul`
 // ================================================================================================================
 const AlurakutLoginScreen = css`
   :root {
-    --backgroundPrimary: #D9E6F6;
-    --backgroundSecondary: #F1F9FE;
-    --backgroundTertiary: #FFFFFF;
-    --backgroundQuarternary: #BBCDE8;
-    --colorPrimary: #2E7BB4;
-    --colorSecondary: #388BB0;
-    --colorTertiary: #2F4A71;
-    --colorQuarternary: #D81D99;
-    --textPrimaryColor: #333333;
-    --textSecondaryColor: #FFFFFF;
-    --textTertiaryColor: #5A5A5A;
-    --textQuarternaryColor: #C5C6CA;
+    --backgroundPrimary: #1c1c1e;
+    --backgroundSecondary: #2c2c2e;
+    --backgroundTertiary: #3a3a3c;
+    --backgroundQuarternary: #48484a;
+    --colorPrimary: #48484a;
+    --colorSecondary: #3a3a3c;
+    --colorTertiary: #2c2c2e;
+    --colorQuarternary: #1c1c1e;
+    --textPrimaryColor: #f2f2f7;
+    --textSecondaryColor: #e5e5ea;
+    --textTertiaryColor: #d1d1d6;
+    --textQuarternaryColor: #c7c7cc;
     --commonRadius: 8px;
   }
   .loginScreen {

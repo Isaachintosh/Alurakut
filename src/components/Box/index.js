@@ -28,7 +28,7 @@ const Box = styled.div`
     margin-bottom: 20px;
     font-size: 16px;
     font-weight: 700;
-    color: #333333;
+    color: #f2f2f7;
     margin-bottom: 20px;
   }
   hr {

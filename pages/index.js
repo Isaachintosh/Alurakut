@@ -1,11 +1,11 @@
-
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
+import { AlurakutMenu } from '../src/lib/AlurakutCommons'
 
 function ProfileSidebar(properties) {
   return (
     <Box>
-      <img src={`https://github.com/${properties.githubUser}.png`} style={{ borderRadius: '99px' }}/>
+      <img src={`https://github.com/${properties.githubUser}.png`} style={{ borderRadius: '10px' }}/>
     </Box>
   )
 }
@@ -13,6 +13,8 @@ function ProfileSidebar(properties) {
 export default function Home() {
   const randomUser = `isaachintosh`;
   return (
+    <>
+    <AlurakutMenu />
     <MainGrid>
       <div className="profileArea" style={{ gridArea: 'profileArea' }}>
         <ProfileSidebar githubUser={randomUser}/>
@@ -34,5 +36,6 @@ export default function Home() {
         </Box>
       </div>
     </MainGrid>
+    </>
   )
 }

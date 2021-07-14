@@ -55,13 +55,36 @@ const Box = styled.div`
       opacity: 1;
     }
   }
+  box, input {
+    background: rgba(255,255,255, 0.15);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  input:hover {
+    background-color: rgba(255,255,255, 0.3);
+    transition: 0.5s;
+  }
+  input:focus {
+    background-color: rgba(0,0,0, 0.3);
+    border: 1px solid rgba(225, 225, 255, 0.6205);
+    transition: 0.5s;
+    outline-style: none;
+  }
   button {
     border: 0;
     padding: 8px 12px;
     color: #FFFFFF;
     border-radius: 10000px;
-    background-color: #6F92BB;
+    background-color: rgba(255, 255, 255, 0.1105);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
     }
+  button:hover {
+    background-color: rgba(225, 225, 255, 0.3205);
+    transition: 0.5s;
+  }
+  button:active {
+    background-color: rgba(225, 225, 255, 0.6205);
+    transition: 0.5s;
+  }
 `;
 
 export default Box;

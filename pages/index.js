@@ -1,6 +1,6 @@
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
-import Forms from '../src/components/Forms';
+// import Forms from '../src/components/Forms';
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
@@ -22,6 +22,7 @@ function ProfileSidebar(properties) {
 
 export default function Home() {
   const randomUser = `isaachintosh`;
+  const communities = []
   const faviPersons = [
     'juunegreiros',
     'omariosouto',
@@ -46,8 +47,11 @@ export default function Home() {
             </OrkutNostalgicIconSet>
           </Box>
           <Box>
-            <h2 className="formTitle">O que desejas fazer?</h2>
-            <Forms>
+            <h2 className="subTitle">O que desejas fazer?</h2>
+            <form onSubmit={function handleCommunityCreate(e){
+              e.preventDefault()
+              
+            }}>
               <div className="formArea">
                 <input 
                   placeholder="Qual será o nome da sua comunidade?" 
@@ -65,7 +69,10 @@ export default function Home() {
                   
                 />
               </div>
-            </Forms>
+              <button>
+                Criar Comunidade
+              </button>
+            </form>
           </Box>
         </div>
         <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
@@ -87,9 +94,21 @@ export default function Home() {
             </ul>
 
           </ProfileRelationsBoxWrapper>
-          <Box>
-            Comunidades
-          </Box>
+          <ProfileRelationsBoxWrapper>
+            <h2 className="smallTitle">Comunidades</h2>
+            <ul>
+              {faviPersons.map((itemAtual) => {
+                return (
+                  <li>
+                    <a href={`/users/${itemAtual}`} key={itemAtual}>
+                      <img src={`https://github.com/${itemAtual}.png`}/>
+                      <span>{itemAtual}</span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </ProfileRelationsBoxWrapper>
         </div>
       </MainGrid>
     </>

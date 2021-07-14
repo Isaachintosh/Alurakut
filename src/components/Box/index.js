@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Box = styled.div`
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.37);
   background: #424242;
   padding: 16px;
@@ -31,11 +31,16 @@ const Box = styled.div`
     color: #f2f2f7;
     margin-bottom: 20px;
   }
+  .borderPerfil {
+    border-radius: '16px';
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.26);
+  }
   hr {
     margin-top: 12px;
     margin-bottom: 8px;
     border-color: transparent;
-    border-bottom-color: #ECF2FA;
+    border-bottom-color: #505050;
   }
   input {
     width: 100%;
@@ -46,7 +51,7 @@ const Box = styled.div`
     margin-bottom: 14px;
     border-radius: 10000px;
     ::placeholder {
-      color: #333333;
+      color: #c4c4c4;
       opacity: 1;
     }
   }

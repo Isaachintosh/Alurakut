@@ -6,7 +6,15 @@ import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 function ProfileSidebar(properties) {
   return (
     <Box>
-      <img src={`https://github.com/${properties.githubUser}.png`} style={{ borderRadius: '10px' }}/>
+      <img src={`https://github.com/${properties.githubUser}.png`} className="borderPerfil" style={{ borderRadius: '12px' }}/>
+      <hr/>
+      <p>
+        <a className="boxLink" href={`https://github.com/${properties.githubUser}`}>
+          @{properties.githubUser}
+        </a>
+      </p>
+      <hr/>
+      <AlurakutProfileSidebarMenuDefault></AlurakutProfileSidebarMenuDefault>
     </Box>
   )
 }
@@ -27,10 +35,6 @@ export default function Home() {
       <MainGrid>
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
           <ProfileSidebar githubUser={randomUser}/>
-          <Box>
-            <AlurakutProfileSidebarMenuDefault></AlurakutProfileSidebarMenuDefault>
-
-          </Box>
         </div>
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
           <Box>

@@ -260,9 +260,9 @@ export function OrkutNostalgicIconSet(props) {
         </li>
       ))}
       {[
-        { name: 'Confiável', slug: 'confiavel', icon: 'smile' },
-        { name: 'Legal', slug: 'legal', icon: 'cool' },
-        { name: 'Sexy', slug: 'sexy', icon: 'heart' },
+        { name: 'Front-End', slug: 'Front-End', icon: 'smile' },
+        { name: 'Back-End', slug: 'Back-End', icon: 'cool' },
+        { name: 'Full-Stack', slug: 'Full-Stack', icon: 'heart' },
       ].map(({ name, slug, icon }) => {
         const total = props[slug] ? props[slug] : 2;
         return (

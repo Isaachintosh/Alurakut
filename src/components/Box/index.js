@@ -45,7 +45,7 @@ const Box = styled.div`
   input {
     width: 100%;
     background-color: #F4F4F4;
-    color: #333333;
+    color: #fff;
     border: 0;
     padding: 14px 16px;
     margin-bottom: 14px;

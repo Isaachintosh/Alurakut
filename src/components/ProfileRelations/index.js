@@ -22,6 +22,8 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  
     span {
       color: #FFFFFF;
       font-size: 10px;
@@ -48,5 +50,6 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
       z-indeX: 1;
       background-image: linear-gradient(0deg,#00000073,transparent);
     }
+    
   }
 `;

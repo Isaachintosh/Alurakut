@@ -27,7 +27,7 @@ export default function Home() {
     image: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg'
   }])
   // const communities = []
-  const randomUser = `isaachintosh`;
+  const githubUser = `isaachintosh`;
   const faviPersons = [
     'juunegreiros',
     'omariosouto',
@@ -38,15 +38,15 @@ export default function Home() {
   ]
   return (
     <>
-      <AlurakutMenu /> {/** alterar cor para dark theme */}
+      <AlurakutMenu githubUser={githubUser}/> {/** alterar cor para dark theme */}
       <MainGrid>
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
-          <ProfileSidebar githubUser={randomUser}/>
+          <ProfileSidebar githubUser={githubUser}/>
         </div>
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
           <Box>
             <h1 className="title">
-              Bem vindo
+              Bem vindo(a), {githubUser}
             </h1>
             <OrkutNostalgicIconSet>
             </OrkutNostalgicIconSet>

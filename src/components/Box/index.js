@@ -5,14 +5,16 @@ const Box = styled.div`
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.37);
   background: #424242;
   padding: 16px;
+  margin-bottom: 10px;
+  
   
   /* CSS Pré-Pronto */
-  margin-bottom: 10px;
   .boxLink {
     font-size: 14px;
     color: #2E7BB4;
     text-decoration: none;
     font-weight: 800;
+    word-break: break-all;
   }
   .title {
     font-size: 32px;
@@ -35,6 +37,24 @@ const Box = styled.div`
     border-radius: '16px';
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.26);
+  }
+  .pathSubtitle {
+    font-size: 12px;
+    color: #6f6f6f;
+
+    span {
+      font-size: 12px;
+      color: #777777;
+    }
+  }
+  .noScrap {
+    margin-top: 24px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    background-color: #fcfdde;
+    padding: 12px;
   }
   hr {
     margin-top: 12px;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box';
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons';
@@ -43,39 +43,10 @@ function ProfileRelationsBox(properties) {
 }
 
 export default function Home() {
-  const [communities, setCommunities] = React.useState([
-    {
-    id: '2021-07-14-20-12',
-    title: 'JavaScript',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg'
-    },
-    {
-    id: '2021-07-14-20-22',
-    title: 'Next.js',
-    image: 'https://images.ctfassets.net/23aumh6u8s0i/c04wENP3FnbevwdWzrePs/1e2739fa6d0aa5192cf89599e009da4e/nextjs'
-    },
-    {
-    id: '2021-07-14-20-32',
-    title: 'React',
-    image: 'https://www.targethost.com.br/site/wp-content/uploads/2020/04/react-js-target-host.png'
-    },
-    {
-    id: '2021-07-14-20-42',
-    title: 'Node.js',
-    image: 'https://files.virgool.io/upload/users/308/posts/ohqqokusxblr/pspabny8hklz.png'
-    },
-    {
-    id: '2021-07-14-20-52',
-    title: 'Vercel',
-    image: 'https://sdtimes.com/wp-content/uploads/2020/04/1_oBm_3saYz4AI_MS6OekdFQ.png'
-    },
-    // {
-    // id: '2021-07-14-21-12',
-    // title: 'GitHub',
-    // image: 'https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2019/01/O-Que-e-GitHub-e-Para-Que-e-Usado-.png'
-    // }
-    
-])
+  const [isShowingMoreFollowers, setIsShowingMoreFollowers] = useState(false);
+  const [isShowingMoreCommunities, setIsShowingMoreCommunities] =
+    useState(false);
+  const [communities, setCommunities] = React.useState([])
   // const communities = []
   const githubUser = `isaachintosh`;
   const faviPersons = [
@@ -86,10 +57,8 @@ export default function Home() {
     'marcobrunodev',
     'felipefialho'
   ]
-
-  
-  // 0 - Pegar o array de dados do GitHub 
   const [followers, setSeguidores] = React.useState([])
+  // 0 - Pegar o array de dados do GitHub 
   React.useEffect(function(){
     fetch('https://api.github.com/users/Isaachintosh/followers')
     .then(function(serverResponse){
@@ -98,10 +67,45 @@ export default function Home() {
     .then(function(completeResponse){
       setSeguidores(completeResponse)
     })
-  }, []) // esse array vazio indica que a function rodará uma unica vez
-  console.log('Seguidores antes do return: ', followers)
-  // 1 - Criar um box que terá um map
-  //     baseado nos itens do array que pegamos do GitHub
+
+    // API GraphQL
+    fetch('https://graphql.datocms.com/', {
+      method: 'POST',
+      headers: {
+        'Authorization': '7aff5873d646645909d5449398c478',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ "query": `query {
+        allCommunities {
+          id
+          title
+          imageUrl
+          creatorSlug
+        }
+      }`})
+    })
+    .then((response) => response.json())
+    .then((completeResponse) => {
+      const communitiesFromDatoCMS = completeResponse.data.allCommunities;
+      console.log(communitiesFromDatoCMS)
+      setCommunities(communitiesFromDatoCMS);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }, [])
+
+  function handleShowMoreFollowers(e) {
+    e.preventDefault();
+    setIsShowingMoreFollowers(!isShowingMoreFollowers);
+  }
+
+  function handleShowMoreCommunities(e) {
+    e.preventDefault();
+    setIsShowingMoreCommunities(!isShowingMoreCommunities);
+  }
    
 
   return (
@@ -129,12 +133,27 @@ export default function Home() {
               console.log('Campo: ', dataForm.get('image'))
 
               const community = {
-                id: new Date().toISOString(),
                 title: dataForm.get('title'),
-                image: dataForm.get('image')
+                imageUrl: dataForm.get('image'),
+                creatorSlug: githubUser
               }
-              const updatedCommunities = [...communities, community]
-              setCommunities(updatedCommunities)
+
+              fetch('/api/communities', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(community)
+              })
+              .then(async (response) => {
+                const data = await response.json()
+                console.log(data.recordCreated)
+                const community = data.recordCreated
+                const updatedCommunities = [...communities, community]
+                setCommunities(updatedCommunities)
+              })
+
+              
             }}>
               <div className="formArea">
                 <input 
@@ -162,7 +181,7 @@ export default function Home() {
         <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
           {/* {followers} */}
           <ProfileRelationsBox title="Seguidores" items={followers}/>
-          <ProfileRelationsBoxWrapper>
+          <ProfileRelationsBoxWrapper isShowingMoreItems={isShowingMoreCommunities}>
               <h2 className="smallTitle">
                 Comunidades ({communities.length})
               </h2>
@@ -170,18 +189,28 @@ export default function Home() {
                 {communities.map((itemAtual) => {
                   return (
                     <li key={itemAtual.id}>
-                      <div className="FrostedGlass">
-                        <a href={`/users/${itemAtual.title}`}>
-                          <img src={itemAtual.image}/>
+                        <a href={`/communities/${itemAtual.id}`}>
+                          <img src={itemAtual.imageUrl}/>
                           <span>{itemAtual.title}</span>
                         </a>
-                      </div>
                     </li>
                   )
                 })}
               </ul>
+              {communities.length > 6 && (
+              <div className="showMoreCommunities">
+                <hr />
+                <button
+                  className="toggleButton"
+                  onClick={(e) => handleShowMoreCommunities(e)}
+                >
+                  {isShowingMoreCommunities ? 'Ver menos' : 'Ver mais'}
+                </button>
+              </div>
+            )}
             </ProfileRelationsBoxWrapper>
-            <ProfileRelationsBoxWrapper>
+            <ProfileRelationsBoxWrapper
+            isShowingMoreItems={isShowingMoreFollowers}>
               <h2 className="smallTitle">
                 Pessoas da Comunidade ({faviPersons.length})
               </h2>
@@ -197,7 +226,15 @@ export default function Home() {
                   )
                 })}
               </ul>
-
+              {faviPersons.length > 6 && (
+                <>
+                  <hr />
+                  <button 
+                    className="toggleButton"
+                    onClick={(e) => handleShowMoreFollowers(e)}
+                  >{isShowingMoreFollowers ? 'Ver menos' : 'Ver mais'}</button>
+                </>
+              )}
             </ProfileRelationsBoxWrapper>
         </div>
       </MainGrid>

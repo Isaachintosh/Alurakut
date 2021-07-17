@@ -319,20 +319,20 @@ OrkutNostalgicIconSet.List = styled.ul`
 // ================================================================================================================
 // Login Page
 // ================================================================================================================
-const AlurakutLoginScreen = css`
+export const AlurakutLoginScreen = css`
   :root {
     --backgroundPrimary: #1c1c1e;
     --backgroundSecondary: #2c2c2e;
     --backgroundTertiary: #3a3a3c;
     --backgroundQuarternary: #48484a;
-    --colorPrimary: #48484a;
-    --colorSecondary: #3a3a3c;
-    --colorTertiary: #2c2c2e;
-    --colorQuarternary: #1c1c1e;
-    --textPrimaryColor: #f2f2f7;
-    --textSecondaryColor: #e5e5ea;
-    --textTertiaryColor: #d1d1d6;
-    --textQuarternaryColor: #c7c7cc;
+    --colorPrimary: #f2f2f7;
+    --colorSecondary: #e5e5ea;
+    --colorTertiary: #d1d1d6;
+    --colorQuarternary: #c7c7cc;
+    --textPrimaryColor: #48484a;
+    --textSecondaryColor: #3a3a3c;
+    --textTertiaryColor: #2c2c2e;
+    --textQuarternaryColor: #1c1c1e;
     --commonRadius: 8px;
   }
   .loginScreen {
@@ -442,6 +442,7 @@ const AlurakutLoginScreen = css`
       background-color: var(--backgroundQuarternary);
       border-radius: var(--commonRadius);
       padding: 8px;
+      height: auto;
       p {
         font-size: 12px;
         text-align: center;
@@ -471,12 +472,30 @@ export const AlurakutStyles = css`
   *::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+  p {
+    padding: 8px;
+    color: #ffffff;
+  }
+  strong {
+    color: #d81d99;
+  }
+  .enterNow {
+    color: #ffffff;
+    margin: 4px;
+  }
   a,
   button {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 4px;
+    border-radius: 8px;
     cursor: pointer;
     transition: .3s;
     outline: 0;
-    &:hover,
+    background: rgb(95,95,95);
+    &:hover {
+      background: rgb(135,135,135);
+    }
     &:focus {
       opacity: .8;
     }
@@ -486,6 +505,7 @@ export const AlurakutStyles = css`
     }
   }
   input {
+    color: #ffffff;
     transition: .3s;
     outline: 0;
     &:disabled {
@@ -495,6 +515,9 @@ export const AlurakutStyles = css`
     &:hover,
     &:focus {
       box-shadow: 0px 0px 5px #33333357;
+    }
+    .glassMorphism {
+      backdrop-filter: blur(8px);
     }
   }
   ${AlurakutLoginScreen}

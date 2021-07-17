@@ -26,8 +26,8 @@ function ProfileRelationsBox(properties) {
       <h2 className="smallTitle">
         {properties.title} ({properties.items.length})
       </h2>
-      <ul>
-        {/* {properties.map((itemAtual) => {
+      {/* <ul>
+        {properties.map((itemAtual) => {
           return (
             <li key={itemAtual}>
               <a href={`https://github.com/${itemAtual.title}.png`}>
@@ -36,8 +36,8 @@ function ProfileRelationsBox(properties) {
               </a>
             </li>
           )
-        })} */}
-      </ul>
+        })}
+      </ul> */}
     </ProfileRelationsBoxWrapper>
   )
 }
@@ -179,8 +179,10 @@ export default function Home() {
           </Box>
         </div>
         <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
-          {/* {followers} */}
-          <ProfileRelationsBox title="Seguidores" items={followers}/>
+          
+          <ProfileRelationsBox title="Seguidores" items={followers}>
+
+          </ProfileRelationsBox>
           <ProfileRelationsBoxWrapper isShowingMoreItems={isShowingMoreCommunities}>
               <h2 className="smallTitle">
                 Comunidades ({communities.length})

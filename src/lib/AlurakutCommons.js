@@ -35,7 +35,7 @@ export function AlurakutMenu({ githubUser }) {
         </nav>
 
         <nav>
-          <a href={`/logout`}>
+          <a href={`/login`}>
             Sair
           </a>
           <div>
@@ -213,7 +213,7 @@ export function AlurakutProfileSidebarMenuDefault() {
           <img src={`${BASE_URL}/icons/plus.svg`} />
             GitHub Trends
           </a>
-        <a href="/logout">
+        <a href="/login">
           <img src={`${BASE_URL}//icons/logout.svg`} />
             Sair
           </a>
@@ -492,9 +492,6 @@ export const AlurakutStyles = css`
     cursor: pointer;
     transition: .3s;
     outline: 0;
-    padding: 4px;
-    margin: 4px;
-    background: rgb(95,95,95);
     &:hover {
       background: rgb(135,135,135);
     }

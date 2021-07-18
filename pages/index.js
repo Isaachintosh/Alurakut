@@ -22,15 +22,8 @@ function ProfileSidebar(properties) {
   )
 }
 
-function ProfileRelationsBox(properties) {
-  return (
-    <ProfileRelationsBoxWrapper>
-      
-    </ProfileRelationsBoxWrapper>
-  )
-}
-
 export default function Home(props) {
+  const [isShowingMoreFriends, setIsShowingMoreFriends] = useState(false);
   const [isShowingMoreFollowers, setIsShowingMoreFollowers] = useState(false);
   const [isShowingMoreCommunities, setIsShowingMoreCommunities] =
     useState(false);
@@ -92,6 +85,11 @@ export default function Home(props) {
     setIsShowingMoreFollowers(!isShowingMoreFollowers);
   }
 
+  function handleShowMoreFriends(e) {
+    e.preventDefault();
+    setIsShowingMoreFriends(!isShowingMoreFriends);
+  }
+
   function handleShowMoreCommunities(e) {
     e.preventDefault();
     setIsShowingMoreCommunities(!isShowingMoreCommunities);
@@ -100,7 +98,7 @@ export default function Home(props) {
 
   return (
     <>
-      <AlurakutMenu githubUser={githubUser}/> {/** alterar cor para dark theme */}
+      <AlurakutMenu githubUser={githubUser}/>
       <MainGrid>
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
           <ProfileSidebar githubUser={githubUser}/>
@@ -170,22 +168,37 @@ export default function Home(props) {
         </div>
         <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
           
-          <ProfileRelationsBoxWrapper title="Seguidores" items={followers}>
+          <ProfileRelationsBoxWrapper
+            title="Seguidores"
+            items={followers}
+            isShowingMoreItems={isShowingMoreFollowers}
+          >
             <h2 className="smallTitle">
               Seguidores ({followers.length})
             </h2>
             <ul>
-              {followers.map((itemAtual) => {
-                return (
-                  <li key={itemAtual.id}>
-                    <a href={`/followers/${itemAtual.id}`}>
-                      <img src={itemAtual.avatar_url}/>
-                      <span>{itemAtual.title}</span>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
+            {followers.map((itemAtual) => {
+              return (
+                <li key={itemAtual.id}>
+                  <a href={`/followers/${itemAtual.id}`}>
+                    <img src={itemAtual.avatar_url}/>
+                    <span>{itemAtual.title}</span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+          {followers.length > 6 && (
+            <div className="showMoreFollowers">
+              <hr />
+              <button
+                className="toggleButton"
+                onClick={(e) => handleShowMoreFollowers(e)}
+              >
+                {isShowingMoreFollowers ? 'Ver menos' : 'Ver mais'}
+              </button>
+            </div>
+          )}
           </ProfileRelationsBoxWrapper>
           <ProfileRelationsBoxWrapper isShowingMoreItems={isShowingMoreCommunities}>
               <h2 className="smallTitle">
@@ -216,7 +229,7 @@ export default function Home(props) {
             )}
             </ProfileRelationsBoxWrapper>
             <ProfileRelationsBoxWrapper
-            isShowingMoreItems={isShowingMoreFollowers}>
+            isShowingMoreItems={isShowingMoreFriends}>
               <h2 className="smallTitle">
                 Pessoas da Comunidade ({faviPersons.length})
               </h2>
@@ -237,8 +250,8 @@ export default function Home(props) {
                   <hr />
                   <button 
                     className="toggleButton"
-                    onClick={(e) => handleShowMoreFollowers(e)}
-                  >{isShowingMoreFollowers ? 'Ver menos' : 'Ver mais'}</button>
+                    onClick={(e) => handleShowMoreFriends(e)}
+                  >{isShowingMoreFriends ? 'Ver menos' : 'Ver mais'}</button>
                 </>
               )}
             </ProfileRelationsBoxWrapper>

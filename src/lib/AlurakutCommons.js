@@ -56,6 +56,7 @@ AlurakutMenu.Wrapper = styled.header`
   width: 100%;
   background-color: #505052;
   .alurakutMenuProfileSidebar {
+    overflow: auto;
     background: rgba(72,72,72, 0.85);
     backdrop-filter: blur(8px);
     position: fixed;
@@ -487,11 +488,12 @@ export const AlurakutStyles = css`
   button {
     margin-top: 4px;
     margin-bottom: 4px;
-    padding: 4px;
     border-radius: 8px;
     cursor: pointer;
     transition: .3s;
     outline: 0;
+    padding: 4px;
+    margin: 4px;
     background: rgb(95,95,95);
     &:hover {
       background: rgb(135,135,135);

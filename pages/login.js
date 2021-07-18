@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import nookies from 'nookies';
-import { loginScreen } from '../src/lib/AlurakutCommons'
 
 export default function LoginScreen() {
     const router = useRouter()
@@ -29,7 +28,7 @@ export default function LoginScreen() {
                         onSubmit={(infosDoEvento) => {
                             infosDoEvento.preventDefault()
                             console.log('Usuário: ', githubUser)
-                            fetch('https://alurakut-three-eta.vercel.app//api/login', {
+                            fetch('https://alurakut.vercel.app/api/login', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -56,14 +55,14 @@ export default function LoginScreen() {
                                     setGithubUser(evento.target.value)
                                 }}
                             />
-                            {githubUser.lenght === 0 ? 'Preencha o campo' : ''}
+                            {githubUser.length === 0 ? 'Preencha o campo' : ''}
                             <button type="submit">Login</button>
                     </form>
 
                     <footer className="box glassMorphism">
                         <p> Ainda não é membro?</p>
                         <p>
-                            <a href="https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home">
+                            <a href="https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home" >
                                 <strong className="enterNow">
                                     Entrar já!
                                 </strong>

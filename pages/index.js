@@ -140,8 +140,6 @@ export default function Home(props) {
                 const updatedCommunities = [...communities, community]
                 setCommunities(updatedCommunities)
               })
-
-              
             }}>
               <div className="formArea">
                 <input 
@@ -180,7 +178,10 @@ export default function Home(props) {
             {followers.map((itemAtual) => {
               return (
                 <li key={itemAtual.id}>
-                  <a href={`/followers/${itemAtual.id}`}>
+                  <a
+                    href={`https://github.com/${itemAtual.login}`}
+                    target="_blank"
+                  >
                     <img src={itemAtual.avatar_url}/>
                     <span>{itemAtual.title}</span>
                   </a>
@@ -237,7 +238,7 @@ export default function Home(props) {
                 {faviPersons.map((itemAtual) => {
                   return (
                     <li key={itemAtual}>
-                      <a href={`/users/${itemAtual}`}>
+                      <a href={`https://github.com/${itemAtual}`}>
                         <img src={`https://github.com/${itemAtual}.png`} />
                         <span>{itemAtual}</span>
                       </a>
